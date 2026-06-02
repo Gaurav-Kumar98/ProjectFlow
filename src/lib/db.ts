@@ -313,7 +313,6 @@ function seedInitialProject(db: DatabaseSync) {
     ["Paste a screenshot and turn it into a card", "Inbox", "Feature", "High"],
     ["Move cards across the kanban board with drag and drop", "Next", "Feature", "High"],
     ["Use phases to keep MVP work separate from polish work", "Backlog", "Enhancement", "Medium"],
-    ["Create project-specific desktop shortcuts", "Backlog", "Feature", "Urgent"],
     ["Export a local backup with database and attachments", "Backlog", "Feature", "Medium"]
   ];
 
@@ -986,42 +985,6 @@ export function deleteAttachment(attachmentId: string) {
     rmSync(resolved, { force: true });
   }
   getDb().prepare("DELETE FROM attachments WHERE id = ?").run(attachmentId);
-}
-
-export function saveShortcutRecord(input: {
-  projectId?: string | null;
-  shortcutName: string;
-  shortcutPath: string;
-  iconPath?: string | null;
-  targetUrl: string;
-}) {
-  const existing = input.projectId
-    ? (getDb()
-        .prepare("SELECT id FROM desktop_shortcuts WHERE project_id = ? LIMIT 1")
-        .get(input.projectId) as Row | undefined)
-    : null;
-  const stamp = now();
-  const shortcutId = stringValue(existing?.id) || id();
-
-  getDb()
-    .prepare(`
-      INSERT OR REPLACE INTO desktop_shortcuts (
-        id, project_id, shortcut_name, shortcut_path, icon_path, target_url, created_at, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, COALESCE((SELECT created_at FROM desktop_shortcuts WHERE id = ?), ?), ?)
-    `)
-    .run(
-      shortcutId,
-      input.projectId || null,
-      input.shortcutName,
-      input.shortcutPath,
-      input.iconPath || null,
-      input.targetUrl,
-      shortcutId,
-      stamp,
-      stamp
-    );
-
-  return shortcutId;
 }
 
 export function saveUploadedProjectIcon(input: {

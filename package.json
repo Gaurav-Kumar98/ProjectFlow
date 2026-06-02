@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Ultra-fast local web kanban app for AI-driven tech projects.",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev -p 3344 -H 127.0.0.1",
     "dev:local": "next dev -p %PORT% -H 127.0.0.1",

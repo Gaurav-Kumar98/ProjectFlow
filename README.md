@@ -14,6 +14,7 @@ _Open it → type a task or paste a screenshot → press Enter → keep building
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-node%3Asqlite-003B57?logo=sqlite&logoColor=white)](https://nodejs.org/api/sqlite.html)
 [![MCP](https://img.shields.io/badge/MCP-server-6E56CF)](https://modelcontextprotocol.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 </div>
 
@@ -116,4 +117,4 @@ Next.js 15 (App Router) · React 19 · TypeScript 5 · Tailwind CSS 3 · `node:s
 
 ## Contributing & License
 
-Personal tool, but issues and PRs are welcome — run `npm run typecheck` before opening one. No `LICENSE` file yet, so all rights are reserved by default; add one (e.g. [MIT](https://choosealicense.com/licenses/mit/)) to allow reuse.
+Personal tool, but issues and PRs are welcome — run `npm run typecheck` before opening one. Released under the [MIT License](LICENSE).
