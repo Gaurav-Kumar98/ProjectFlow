@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+/out/
+
+# production build
+dist/
+
+# typescript build artifacts
+*.tsbuildinfo
+next-env.d.ts
+
+# logs
+*.log
+
+# env files
+.env*.local
+
+# local application data (sqlite db, attachments, icons, backups, logs)
+.local-data/
+%LOCALAPPDATA%/
+
+# editor / tooling
+ProjectFlow.code-workspace
+.claude/settings.local.json
