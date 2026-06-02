@@ -80,12 +80,10 @@ It doesn’t try to be Jira, Notion, or Trello. It runs entirely on your machine
 
 ## Screenshots
 
-> _Add screenshots or a demo GIF here — drop images into a `docs/` folder and reference them, e.g.:_
->
-> ```md
-> ![Board](docs/board.png)
-> ![Task detail](docs/task-detail.png)
-> ```
+<div align="center">
+  <img src="docs/board.png" alt="ProjectFlow board showing the TravelVault project: kanban columns (Backlog, Next, In Progress, Review/Test, Done), task cards with type/priority/tags, and a screenshot attached to a bug card." width="100%" />
+  <p><em>The TravelVault board — fast capture, drag-and-drop columns, type / priority / tags, and a pasted screenshot attached straight to a bug card.</em></p>
+</div>
 
 ## Getting Started
 
