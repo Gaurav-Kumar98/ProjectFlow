@@ -19,6 +19,30 @@ function Test-ProjectFlowServer {
   }
 }
 
+function Wait-ProjectFlowPage {
+  param(
+    [string]$Url,
+    [int]$TimeoutSec = 60
+  )
+
+  # In dev mode Next.js compiles each route lazily on its first request, so the
+  # server can answer /api/health long before the page route is ready. Request
+  # the actual page (and let it compile) before opening the browser, otherwise
+  # the first launch opens against a not-yet-served route.
+  $deadline = (Get-Date).AddSeconds($TimeoutSec)
+  while ((Get-Date) -lt $deadline) {
+    try {
+      $response = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec 30
+      if ($response.StatusCode -eq 200) {
+        return $true
+      }
+    } catch {
+      Start-Sleep -Milliseconds 500
+    }
+  }
+  return $false
+}
+
 function Open-ProjectFlowUrl {
   param(
     [string]$Url,
@@ -92,5 +116,9 @@ Set-Location '$AppRoot'
     throw "ProjectFlow did not become ready on port $Port. Check $logDir\server.log."
   }
 }
+
+# Ensure the page route is actually compiled and serving (dev mode compiles
+# lazily), so the browser doesn't open against a not-yet-ready route.
+Wait-ProjectFlowPage -Url $TargetUrl | Out-Null
 
 Open-ProjectFlowUrl -Url $TargetUrl -Mode $OpenMode
